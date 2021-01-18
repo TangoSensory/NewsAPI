@@ -22,6 +22,7 @@ An API wrapper for the Hacker News API
 - Later Stories have higher Id's. At some point the Story Id's will cycle back to 0 but handling this scenario has not been included in the code
 - A Repository was used in place of a MemoryCache, as this approach offers more flexibility in terms of data store options
 - The ConcurrentFifiDictionary "cache" used by the StoryRepo is 3rd party (tweaked) and not fully tested
+- Config is stored plain-text in appsettings.json
 
 ## Time/context related limitations
 - The Solution's Project structure is simplified. For production it would likely be split into API, Data, Shared/Services
