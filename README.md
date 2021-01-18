@@ -10,14 +10,14 @@ An API wrapper for the Hacker News API
 ## Assumptions
 - Site encryption (SSL) not required
 - User auth not required
-- Logging/auditing not required
+- Logging/auditing not required, though some boilerplate logging has been retained in the BaseStoriesController
 - Analytics not required
 - Multithreading support not in scope
 - Publishing to a web-server not in scope
 - Persistent data store not required
 - It is assumed that the user has access to and knowledge of Visual Studio 2019 (or later)
 - It is assumed that the user is familiar with JSON
-- The supplied news items may be up to 30 seconds out-of-date compared to Hacker News
+- An arbitrary refresh rate of 30 seconds has been decided on, meaning the supplied news items may be up to 30 seconds out-of-date compared to Hacker News
 - Using a background service to constantly check for and retrieve new stories, may not be optimal if the API is accessed infrequently
 - Later Stories have higher Id's. At some point the Story Id's will cycle back to 0 but handling this scenario has not been included in the code
 - A Repository was used in place of a MemoryCache, as this approach offers more flexibility in terms of data store options
@@ -29,4 +29,5 @@ An API wrapper for the Hacker News API
 - Test project structure is simplified
 - All dev will be completed on the main branch
 - XML comments are limited to provide examples only
-- The HackerRestClient uses a static Observable method that is not testable as is. A wrapper would be required
+- The HackerRestClient uses a static Observable method that is not unit-testable as is. A wrapper would be required
+- You could argue that the Story class is actually a DTO. However, it is not persisted and there is no need for domain logic within the class, so I think the use of a separate DTO & Mapper would be overkill in this scenario

@@ -1,12 +1,15 @@
-﻿using HackerNewsAPI.API;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HackerNewsAPI.Tests
+﻿namespace HackerNewsAPI.Tests
 {
+    using HackerNewsAPI.API;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// Tests omitted for brevity - see HackerRestClientTests/IntegrationTests for test examples
+    /// </summary>
     public class BestStoriesControllerTests
     {
         BestStoriesController sut;

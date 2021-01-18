@@ -1,5 +1,6 @@
 ﻿namespace HackerNewsAPI.Repositories
 {
+    using FluentAssertions;
     using HackerNewsAPI.Common;
     using Microsoft.Extensions.Configuration;
     using System;
@@ -33,9 +34,14 @@
         #region Public Methods ---------------------------------------------------------------------------------------------------------------------
         public bool CheckKeyExists(TKey key)
         {
+            key.Should().NotBe(default(TKey));
+
             return _map.ContainsKey(key);
         }
 
+        /// <summary>
+        /// NB. Third-party code (tweaked). Not fully tested
+        /// </summary>
         public TValue GetOrAdd(TKey key, Func<TValue> createValue)
         {
             TValue value;
@@ -61,14 +67,23 @@
             return value;
         }
 
-        public List<TValue> GetValues(int count = -1)
+        public List<TValue> GetValues(int count = int.MaxValue)
         {
+            count.Should().BeGreaterThan(0);
+
             List<TValue> outList = new List<TValue>();
             var queueKeys = _queue.ToList();
             var mapCopy = new Dictionary<TKey, TValue>(_map);
-            foreach (TKey key in queueKeys.TakeLast(count == -1 ? int.MaxValue : count))
+            foreach (TKey key in queueKeys.TakeLast(count))
             {
-                outList.Add(mapCopy[key]);
+                try
+                {
+                    outList.Add(mapCopy[key]);
+                }
+                catch (Exception ex)
+                {
+                    // Handle Exception
+                }
             }
 
             return outList;
@@ -76,6 +91,9 @@
         #endregion
 
         #region Private Methods ---------------------------------------------------------------------------------------------------------------------
+        /// <summary>
+        /// NB. Third-party code (tweaked). Not fully tested
+        /// </summary>
         private void Add(TKey key, TValue value)
         {
             if (_map.Count == _capacity) // capacity reached
@@ -89,6 +107,9 @@
             Debug.Assert(_map.Count <= _capacity, "The count of items should never exceed the capacity.");
         }
 
+        /// <summary>
+        /// NB. Third-party code (tweaked). Not fully tested
+        /// </summary>
         private void RemoveFirst()
         {
             TKey first = _queue.Dequeue();

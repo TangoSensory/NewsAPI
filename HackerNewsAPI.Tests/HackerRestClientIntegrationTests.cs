@@ -13,6 +13,9 @@
     using System.Threading.Tasks;
     using Assert = NUnit.Framework.Assert;
      
+    /// <summary>
+    /// Sample Tests - not full coverage
+    /// </summary>
     [TestClass]
     public class HackerRestClientIntegrationTests : UnitTestBase
     {
@@ -54,6 +57,16 @@
             // Assert
             Assert.IsTrue(result is Story);
             Assert.IsTrue(result.Id == dummyItemId);
+        }
+
+        [TestMethod]
+        public async Task SomeOtherTestsHere()
+        {
+            // Arrange 
+
+            // Act
+
+            // Assert
         }
     }
 }

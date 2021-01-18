@@ -14,6 +14,9 @@ namespace HackerNewsAPI.Tests
     using System.Threading.Tasks;
     using Assert = NUnit.Framework.Assert;
 
+    /// <summary>
+    /// Tests omitted for brevity - see HackerRestClientTests/IntegrationTests for test examples
+    /// </summary>
     [TestClass]
     public class StoryServiceTests : UnitTestBase
     {

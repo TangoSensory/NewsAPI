@@ -7,7 +7,7 @@
 	using System.Threading.Tasks;
 
 	/// <summary>
-	/// Technically, Story is a DTO
+	/// You could argue that Story is actually a DTO 
 	/// </summary>
 	public class Story
 	{

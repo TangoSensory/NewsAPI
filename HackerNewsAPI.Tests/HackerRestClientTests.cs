@@ -13,6 +13,9 @@ namespace HackerNewsAPI.Tests
     using System.Threading.Tasks;
     using Assert = NUnit.Framework.Assert;
 
+    /// <summary>
+    /// Sample Tests - not full coverage
+    /// </summary>
     [TestClass]
     public class HackerRestClientTests : UnitTestBase
     {
@@ -28,12 +31,39 @@ namespace HackerNewsAPI.Tests
         }
 
         [TestMethod]
-        public async Task GetAll_T_Returns_Expected_IEnumerable_T()
+        public async Task GetAll_T_ExecuteAsync_Is_Called_Once()
         {
             // Arrange 
             var dummyList = new List<T>();
-            var dummyResponse = new RestResponse<IEnumerable<T>> { Data = dummyList };
-            this.mockRestClient.Setup(x => x.ExecuteAsync<IEnumerable<T>>(It.IsAny<IRestRequest>(), It.IsAny<CancellationToken>())).ReturnsAsync(dummyResponse);
+            var dummyResponse = new RestResponse<IList<T>> { Data = dummyList };
+            this.mockRestClient.Setup(x => x.ExecuteAsync<IList<T>>(It.IsAny<IRestRequest>(), It.IsAny<CancellationToken>())).ReturnsAsync(dummyResponse);
+            this.sut = new HackerRestClient(this.mockRestClient.Object, this.mockConfig.Object);
+
+            // Act
+            var result = await this.sut.GetAll<T>(base.DummyUrl);
+
+            // Assert
+            this.mockRestClient.Verify(x => x.ExecuteAsync<IList<T>>(It.IsAny<IRestRequest>(), It.IsAny<CancellationToken>()), Times.Once());
+        }
+
+        [TestMethod]
+        public async Task GetAll_T_Null_path_Generates_AssertionException()
+        {
+            // Arrange 
+            var dummyList = new List<T>();
+            this.sut = new HackerRestClient(this.mockRestClient.Object, this.mockConfig.Object);
+
+            // Act / Assert
+            Assert.ThrowsAsync<NUnit.Framework.AssertionException>(async () => await this.sut.GetAll<T>(null));
+        }
+
+        [TestMethod]
+        public async Task GetAll_T_Returns_Expected_List_T()
+        {
+            // Arrange 
+            var dummyList = new List<T>();
+            var dummyResponse = new RestResponse<IList<T>> { Data = dummyList };
+            this.mockRestClient.Setup(x => x.ExecuteAsync<IList<T>>(It.IsAny<IRestRequest>(), It.IsAny<CancellationToken>())).ReturnsAsync(dummyResponse);
             this.sut = new HackerRestClient(this.mockRestClient.Object, this.mockConfig.Object);
 
             // Act
@@ -42,6 +72,16 @@ namespace HackerNewsAPI.Tests
             // Assert
             Assert.IsTrue(result is List<T>);
             Assert.AreEqual(result, dummyList);
+        }
+
+        [TestMethod]
+        public async Task SomeOtherTestsHere()
+        {
+            // Arrange 
+
+            // Act
+
+            // Assert
         }
     }
 }
