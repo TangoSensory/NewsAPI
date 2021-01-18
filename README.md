@@ -23,6 +23,7 @@ An API wrapper for the Hacker News API
 - A Repository was used in place of a MemoryCache, as this approach offers more flexibility in terms of data store options
 - The ConcurrentFifiDictionary "cache" used by the StoryRepo is 3rd party (tweaked) and not fully tested
 - Config is stored plain-text in appsettings.json
+- .Net Core 3.1 preferred over the out-of-suppport .Net Core 2.2
 
 ## Time/context related limitations
 - The Solution's Project structure is simplified. For production it would likely be split into API, Data, Shared/Services
@@ -32,3 +33,4 @@ An API wrapper for the Hacker News API
 - XML comments are limited to provide examples only
 - The HackerRestClient uses a static Observable method that is not unit-testable as is. A wrapper would be required
 - You could argue that the Story class is actually a DTO. However, it is not persisted and there is no need for domain logic within the class, so I think the use of a separate DTO & Mapper would be overkill in this scenario
+- 
