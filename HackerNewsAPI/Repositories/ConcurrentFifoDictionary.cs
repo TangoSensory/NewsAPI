@@ -40,7 +40,7 @@
         }
 
         /// <summary>
-        /// NB. Third-party code (tweaked). Not fully tested
+        /// NB. Third-party code. Not fully tested
         /// </summary>
         public TValue GetOrAdd(TKey key, Func<TValue> createValue)
         {
@@ -92,7 +92,7 @@
 
         #region Private Methods ---------------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// NB. Third-party code (tweaked). Not fully tested
+        /// NB. Third-party code. Not fully tested
         /// </summary>
         private void Add(TKey key, TValue value)
         {
@@ -108,7 +108,7 @@
         }
 
         /// <summary>
-        /// NB. Third-party code (tweaked). Not fully tested
+        /// NB. Third-party code. Not fully tested
         /// </summary>
         private void RemoveFirst()
         {
