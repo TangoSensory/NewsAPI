@@ -26,7 +26,7 @@ An API wrapper for the Hacker News API
 
 ## Time/context related limitations
 - The Solution's Project structure is simplified. For production it would likely be split into API, Data, Shared/Services
-- Test coverage is limited to provide unit test examples only and omits integration testing
+- Test coverage is limited to provide examples only. Some basic E2E/Integration test examples are included
 - Test project structure is simplified
 - All dev will be completed on the main branch
 - XML comments are limited to provide examples only
