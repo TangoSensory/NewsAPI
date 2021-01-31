@@ -1,5 +1,8 @@
 # NewsAPI
-An API wrapper for the Hacker News API
+
+** NOT A PRODUCTION SYSTEM - Coded in a time-limited manner as part of a job application **
+
+An API wrapper for the Hacker News API. 
 
 ## Instructions
 - Open HackerNewsAPI_sln in Visual Studio 2019 (or later). 
@@ -33,4 +36,4 @@ An API wrapper for the Hacker News API
 - XML comments are limited to provide examples only
 - The HackerRestClient uses a static Observable method that is not unit-testable as is. A wrapper would be required
 - You could argue that the Story class is actually a DTO. However, it is not persisted and there is no need for domain logic within the class, so I think the use of a separate DTO & Mapper would be overkill in this scenario
-- 
+
